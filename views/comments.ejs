@@ -1,0 +1,26 @@
+<%- include("partials/header") %>
+
+
+<div class="ui main text container segment">
+    <div class="ui huge header">Add new comment to <%= blog.title %></div>
+    <form id="commentForm" class="ui form" action="/blogs/<%= blog._id %>" method="POST">
+        <div class="field">
+
+            <input type="text" name="comment[author]" placeholder="Author's name">
+        </div>
+        <div class="field">
+
+            <input class="twelve field wide" type="text" name="comment[text]" placeholder="your comment">
+            <input onclick="clearField()" class="ui blue large inverted button" type="submit">
+        </div>
+
+
+    </form>
+</div>
+
+<%-function clearField() {  %>
+<%-    document.chatform.reset();  %>
+<%-   }  %>
+
+
+<%- include("partials/footer") %>

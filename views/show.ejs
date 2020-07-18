@@ -1,0 +1,89 @@
+<%- include("partials/header") %>
+
+
+<div class="  ui main text container segment">
+    <div class="ui huge header"><%= blog.title %></div>
+    <div class="ui top attached ">
+        <div class="item">
+            <img class="ui centered rounded image" src=" <%= blog.image %> "><br>
+            <div class="content">
+                <p>
+                    <strong><label for="">Created by:</label>&nbsp;
+                        <em><%= blog.author.username %>, <%= moment(blog.created).fromNow() %></em>
+                    </strong>
+                </p>
+
+            </div><br>
+            <div class="description">
+                <p><%- blog.body %></p>
+            </div><br>
+            <% if(currentUser._id.equals(blog.author.id)){ %>
+            <a class="ui blue large inverted button" href="/blogs/<%= blog._id%>/edit">EDIT</a>
+            <form class="delete" action="/blogs/<%= blog._id%>?_method=DELETE" method="POST">
+                <Button class="ui large red inverted button">DELETE</Button>
+            </form>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<!-- ADD A NEW COMMENT -->
+
+<div class="ui main text container comment segment">
+    <div class="ui large header">Add new comment</div>
+    <form class="ui form" action="/blogs/<%= blog._id %>" method="POST">
+
+        <div class="field">
+            <input class="twelve field wide" cols="40" rows="5" type="text" name="comment[text]"
+                placeholder="your comment" required>
+            <input id="newCommentBtn" class="ui green large inverted button" value="Add Comment" type="submit">
+        </div>
+
+    </form>
+
+    <!--DELETE COMMENTS -->
+
+    <div class="ui relaxed divided list">
+        <div class="item">
+            <div class="content">
+                <% blog.comments.forEach(function(comment){ %>
+                <span id="commentDate"><%= moment(comment.created).fromNow() %></span>
+                <p>
+                    <strong><%= comment.author.username %></strong>
+                </p>
+                <form class="commentDelete" action="/blogs/<%= blog._id%>/<%= comment._id %>?_method=DELETE"
+                    method="POST">
+
+                    <%= comment.text %><br>
+                    <% if(currentUser._id.equals(blog.author.id) || currentUser._id.equals(comment.author.id) ){ %>
+                    <input class="mini inverted ui red button" type="submit" value="Delete" id="commentEditDelete">
+                    <br>
+                    <hr class="editedHR">
+                    <% } else{%>
+                    <hr class="editedHR">
+                    <% }%>
+                </form>
+
+                <% }) %>
+            </div>
+        </div>
+    </div>
+
+</div>
+<br>
+
+
+
+<!-- Comment -->
+<!-- <div class="ui main text container ">
+    <div class="ui huge header">Comment</div>
+    <form class="ui form" action="/blogs/<%= blog._id %>" method="POST">
+
+        <input class="field thirteen wide" name="comment[text]"></input>&nbsp;&nbsp;
+        <button class="ui blue small button" type="submit">Comment</button>
+    </form>
+    <br>
+</div> -->
+
+
+<%- include("partials/footer") %>

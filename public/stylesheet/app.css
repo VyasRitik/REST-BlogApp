@@ -1,0 +1,42 @@
+i.icon{
+    font-size: 2em;
+}
+
+.container.main{
+    margin-top: 7em;
+}
+
+.delete{
+    display: inline;
+}
+
+
+span{
+    font-weight: bold;
+    float: right;
+    margin-right: 15px;
+}
+
+
+#commentDate{
+    float: right;
+    padding-right: 15px;
+}
+
+em{
+    font-size: 15px;
+}
+
+#commentEditDelete{
+    float: right;
+    margin-right: 15px;
+    font-size: 12px;
+    padding: 7px 14px;
+
+    
+}
+
+.container.comment{
+    width: 700px;
+    word-wrap: break-word;
+}
