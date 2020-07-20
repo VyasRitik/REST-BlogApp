@@ -1,3 +1,7 @@
+:root {
+    --main-bg-color: #0B4C5F;  
+  }
+
 i.icon{
     font-size: 2em;
 }
@@ -10,6 +14,40 @@ i.icon{
     display: inline;
 }
 
+#navbar{
+    background-color:var(--main-bg-color);
+    color: aliceblue;
+}
+
+.extras button{
+    background-color:var(--main-bg-color);
+   border-radius: 2px;
+    width: 9em;
+    height: 2.3em;
+    
+}
+
+button a{
+    color: #fff;
+}
+
+.profilePic{
+    display: flex;
+    background-color: #3B6F7E;
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+    border: 2px solid black;
+    margin-left: 21em;
+    margin-top: 6em;
+}
+
+.fullname{
+    padding-top: 10px;
+    padding-left: 170px;
+    font-size: 25px;
+    font-weight: bold;
+}
 
 span{
     font-weight: bold;
@@ -40,3 +78,5 @@ em{
     width: 700px;
     word-wrap: break-word;
 }
+
+

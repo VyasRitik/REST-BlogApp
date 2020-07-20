@@ -1,10 +1,19 @@
 <%- include("partials/header") %>
 
+<div class="userProfile">
+    <label class="profilePic" placeholder="">
+        <div class="fullname"><%= currentUser.fullname%></div>
+        <br>
+        <br>
+        <!-- <label class="userBio"><%= currentUser.fullname %> -->
+</div>
+<hr>
 <div class="ui main text container">
-    <div class="ui huge header">Posts
+    <div class="ui huge header">Timeline
         <div class="ui top attached segment">
             <div class="ui divided items">
                 <% blogs.forEach(function(blog){ %>
+
                 <div class="item">
                     <div class="image">
                         <img src=" <%= blog.image %> ">
@@ -22,18 +31,17 @@
                                     <i class="right small chevron icon"></i>
                                 </a>
                             </button>
+
                         </div>
                     </div>
 
                 </div>
+
                 <% }); %>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
+<br>
 
 <%- include("partials/footer") %>

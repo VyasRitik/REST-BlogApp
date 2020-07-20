@@ -25,11 +25,6 @@
             <% } %>
         </div>
     </div>
-</div>
-
-<!-- ADD A NEW COMMENT -->
-
-<div class="ui main text container comment segment">
     <div class="ui large header">Add new comment</div>
     <form class="ui form" action="/blogs/<%= blog._id %>" method="POST">
 
@@ -40,36 +35,49 @@
         </div>
 
     </form>
+    <div class="item">
+        <div class="content">
+            <% blog.comments.forEach(function(comment){ %>
+            <hr>
+            <span id="commentDate"><%= moment(comment.created).fromNow() %></span>
+            <p>
+                <strong><%= comment.author.username %></strong>
+            </p>
 
-    <!--DELETE COMMENTS -->
-
-    <div class="ui relaxed divided list">
-        <div class="item">
-            <div class="content">
-                <% blog.comments.forEach(function(comment){ %>
-                <span id="commentDate"><%= moment(comment.created).fromNow() %></span>
-                <p>
-                    <strong><%= comment.author.username %></strong>
-                </p>
+            <div class="ui relaxed divided list">
                 <form class="commentDelete" action="/blogs/<%= blog._id%>/<%= comment._id %>?_method=DELETE"
                     method="POST">
 
                     <%= comment.text %><br>
+
                     <% if(currentUser._id.equals(blog.author.id) || currentUser._id.equals(comment.author.id) ){ %>
                     <input class="mini inverted ui red button" type="submit" value="Delete" id="commentEditDelete">
                     <br>
-                    <hr class="editedHR">
-                    <% } else{%>
-                    <hr class="editedHR">
-                    <% }%>
+                    <!-- <hr> -->
+                    <% } %>
+
                 </form>
 
-                <% }) %>
+
             </div>
+            <% }) %>
+
         </div>
     </div>
+</div>
+
+<!-- ADD A NEW COMMENT -->
+
+<!-- <div class="ui main text container comment segment">
+
+
+    <!--DELETE COMMENTS -->
+<!-- <div class="ui relaxed divided list">
 
 </div>
+
+
+</div>-->
 <br>
 
 

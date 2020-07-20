@@ -25,6 +25,7 @@ var imageFilter = function (req, file, cb) {
 var upload = multer({ storage: storage, fileFilter: imageFilter })
 
 var cloudinary = require('cloudinary');
+const blog = require("./models/blog");
 cloudinary.config({
     cloud_name: 'ritikvyas',
     api_key: process.env.CLOUDINARY_API_KEY,
@@ -175,6 +176,34 @@ app.delete("/blogs/:id", userBlogOwnership, (req, res) => {
             }
         }
     });
+});
+
+
+//Profile route
+app.get("/:id/profile", isLoggedIn, (req, res) => {
+
+    User.findById(req.params.id, function (err, foundUser) {
+        if (err) {
+            //req.flash("error", "Something went wrong.");
+            return res.redirect("/");
+        }
+        Blog.find().where('author.id').equals(foundUser._id).exec(function (err, blogs) {
+            if (err) {
+                //req.flash("error", "Something went wrong.");
+                return res.redirect("/");
+            }
+            res.render("profile.ejs", { user: foundUser, blogs: blogs });
+        })
+    });
+});
+
+
+
+
+
+//Settings Route
+app.get("/settings", (req, res) => {
+    res.render("settings.ejs");
 });
 
 

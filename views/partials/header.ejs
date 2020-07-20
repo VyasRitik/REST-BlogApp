@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="ui fixed inverted menu">
+    <div id="navbar" class="ui fixed inverted menu">
         <div class="ui container">
             <div class="header item"><i class="code icon"></i> MyStories</div>
             <% if(currentUser){ %>
@@ -20,10 +20,13 @@
             <div class="right menu">
                 <% if(!currentUser){ %>
                 <a href="/login" class=" item">Login</a>
-                <a href="/register" class=" item">Register</a>
+                <a href="/" class=" item">Register</a>
                 <% } else { %>
-                <li class="item">Welcome <%= currentUser.fullname  %></li>
+                <a href="/<%= currentUser._id %>/profile" class="item"><%= currentUser.fullname  %></a>
                 <a href="/logout" class=" item">Logout</a>
+                <div class="item"><a href="/settings"><i class=" cog icon"></i></a>
+                </div>
+
                 <%  } %>
 
             </div>
